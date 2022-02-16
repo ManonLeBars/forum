@@ -37,6 +37,16 @@ class Comment
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comment")
+     */
+    private $post;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +96,30 @@ class Comment
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
+
+    public function setPost(?Post $post): self
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
