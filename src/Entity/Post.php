@@ -50,7 +50,7 @@ class Post
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="post")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
      */
     private $comment;
 
