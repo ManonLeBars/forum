@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,9 +39,21 @@ class PostController extends AbstractController
      */
     public function add(Request $request): Response
     {
+        $post = new Post();
 
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+        }
         return $this->render('post/add.html.twig', [
-            'controller_name' => 'PostController',
+        'form' => $form->createView(),
         ]);
     }
 }

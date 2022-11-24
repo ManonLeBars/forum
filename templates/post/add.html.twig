@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}Poster{% endblock %}
 
 {% block body %}
     <h1 class="p-5 text-center">Poster</h1>
     
-    <form> {# Formulaire un post #}
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Commenter</button>
-    </form>
+    {{ form_start(form) }}
+        {{form_row(form.title)}}
+        {{form_row(form.body)}}
+        {{form_row(form.picture)}}
+         <button class="btn" type="submit">Poster</button> 
+    {{ form_row(form._token) }}
+    {{ form_end(form) }}
 
 {% endblock %}
