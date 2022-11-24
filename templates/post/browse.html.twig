@@ -4,10 +4,17 @@
 
 {% block body %}
     <h1 class="p-5 text-center">Forum</h1>
-    <button type="button" class="btn btn-primary">Poster</button>
-    <div> <p>Trier par:</p> <button type="button" class="btn btn-secondary">tris</button></div>
 
-    <div class="card"> {# Faire un boucle sur cette div pour afficher tout les posts #}
+    <div class="mb-3 text-center">
+        <button type="button" class="btn btn-primary">Poster</button>
+    </div>
+    
+    <div class="mb-3 "> 
+        <p>Trier par:</p> 
+        <button type="button" class="btn btn-secondary">tris</button>
+    </div>
+
+    <div class="card mb-3"> {# Faire un boucle sur cette div pour afficher tout les posts #}
         <div class="card-header">
             Titre du post
         </div>
@@ -19,7 +26,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header">
             Titre du post
         </div>
