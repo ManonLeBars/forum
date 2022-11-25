@@ -31,10 +31,6 @@ class PostType extends AbstractType
             'label' => 'photo',
             'required' => false,
         ])
-        ->add('is_active', IntegerType::class, [
-            'label' => 'Afficher',
-            'required' => true,
-        ])
         
         ;
     }
