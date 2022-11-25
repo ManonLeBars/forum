@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,14 @@ class PostController extends AbstractController
     /**
      * @Route("", name="browse")
      */
-    public function browse(): Response
+    public function browse(PostRepository $postRepository): Response
     {
+        $post = new Post;
+        
+        $post = $postRepository->findBy(['is_active' => true], ['created_at' => 'DESC']);
+
         return $this->render('post/browse.html.twig', [
-            'controller_name' => 'PostController',
+            'posts' => $post,
         ]);
     }
 

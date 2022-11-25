@@ -38,7 +38,7 @@ class Post
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_active = true;
+    private $is_active;
 
     /**
      * @ORM\Column(type="datetime")
@@ -63,7 +63,8 @@ class Post
     public function __construct()
     {
         $this->comment = new ArrayCollection();
-        $this->created_at = new DateTime();
+        $this->created_at = new \DateTime();
+        $this->is_active = true;
     }
 
     public function getId(): ?int
@@ -119,24 +120,24 @@ class Post
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
