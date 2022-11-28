@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Posts{% endblock %}
+{% block title %}Post{% endblock %}
 
 {% block body %}
-    <h1 class="p-5 text-center">Un seul post</h1>
-
+    
     <div class="card">
         <div class="card-header">
-            Titre du post
+            <h1 class="text-center">{{post.title}}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Posté par:</h5>
-            <p>le {{ "now"|date("d/m/Y") }}</p>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title">Posté par: {{post.user}}</h5>
+            <p>le </p>
+            <p class="card-text">{{post.body}}</p>
             <a href="#" class="btn btn-primary">Signaler</a>{# Faire un lien vers un formulaire de signalement#}
         </div>
     </div>

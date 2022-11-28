@@ -30,12 +30,13 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/1", name="read")
+     * @Route("/{id}", name="read" , requirements={"id"="\d+"})
      */
-    public function read(): Response
+    public function read(Post $post): Response
     {
+       
         return $this->render('post/read.html.twig', [
-            'controller_name' => 'PostController',
+            'post' => $post,
         ]);
     }
 
