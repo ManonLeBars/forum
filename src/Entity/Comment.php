@@ -38,12 +38,13 @@ class Comment
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $post;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      */
     private $user;
 

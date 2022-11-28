@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -52,6 +51,7 @@ class Post
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $comment;
 
@@ -154,8 +154,8 @@ class Post
 
     public function addComment(comment $comment): self
     {
-        if (!$this->comment->contains($comment)) {
-            $this->comment[] = $comment;
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
             $comment->setPost($this);
         }
 
