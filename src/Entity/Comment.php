@@ -45,9 +45,15 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;

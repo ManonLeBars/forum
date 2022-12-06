@@ -53,16 +53,17 @@ class Post
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $comment;
+    private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="post")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     public function __construct()
     {
-        $this->comment = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->created_at = new \DateTime();
         $this->is_active = true;
     }
@@ -147,9 +148,9 @@ class Post
     /**
      * @return Collection|comment[]
      */
-    public function getComment(): Collection
+    public function getComments(): Collection
     {
-        return $this->comment;
+        return $this->comments;
     }
 
     public function addComment(comment $comment): self
