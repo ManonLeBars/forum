@@ -58,7 +58,7 @@ class PostController extends AbstractController
         return $this->render('post/read.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-            'comments' => $comment,
+            
 
         ]);
     }
@@ -77,9 +77,10 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $post->setUser($this->getUser());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
             return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
 

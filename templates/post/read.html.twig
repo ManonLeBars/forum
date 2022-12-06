@@ -22,9 +22,9 @@
         </div>
         <div class="card-body">
             <pre>
-                {{ dump(post.comment) }}
+                {{ dump(post.comments) }}
             </pre>
-            {% for comment in post.comment %}
+            {% for comment in post.comments %}
                 <div>{# Faire une boucle sur cette div pour contenir tout les commentaires relatifs #}
                     <h5 class="card-title">Posté par:</h5>
                     <p>le {{ "now"|date("d/m/Y") }}</p>
@@ -41,13 +41,11 @@
         </div>
     </div>
     
-    <form> {# Formulaire pour soumettre un commentaire #}
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Commenter</button>
-    </form>
+    {{ form_start(form) }}
+        {{form_row(form.body)}}
+        <input class="btn btn-primary" type="submit" value="Submit">
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
     
 {% endblock %}
