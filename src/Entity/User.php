@@ -13,8 +13,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -70,12 +71,12 @@ class User implements UserInterface
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=post::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
      */
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
      */
     private $comments;
 
@@ -153,7 +154,7 @@ class User implements UserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): ?string
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -241,7 +242,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|post[]
+     * @return Collection|Post[]
      */
     public function getPost(): Collection
     {
@@ -271,7 +272,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|comment[]
+     * @return Collection|Comment[]
      */
     public function getComment(): Collection
     {
