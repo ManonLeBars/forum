@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Posté par: {{post.user}}</h5>
-            <p>le </p>
+            <p>le {{ "now"|date("d/m/Y") }}</p>
             <p class="card-text">{{post.body}}</p>
             <a href="#" class="btn btn-primary">Signaler</a>{# Faire un lien vers un formulaire de signalement#}
         </div>
@@ -21,22 +21,13 @@
             Commentaires
         </div>
         <div class="card-body">
-            <pre>
-                {{ dump(post.comments) }}
-            </pre>
             {% for comment in post.comments %}
                 <div>{# Faire une boucle sur cette div pour contenir tout les commentaires relatifs #}
                     <h5 class="card-title">Posté par:</h5>
                     <p>le {{ "now"|date("d/m/Y") }}</p>
-                    <p class="card-text">boucle</p>
+                    <p class="card-text">{{comment.body}}</p>
                 </div>
             {% endfor %}
-
-            <div>
-                <h5 class="card-title">Posté par:</h5>
-                <p>le {{ "now"|date("d/m/Y") }}</p>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
 
         </div>
     </div>
