@@ -17,7 +17,9 @@ security:
             security: false
         main:
             # allow authentication using a form or HTTP basic
-            form_login: ~
+            form_login: 
+                login_path: app_login
+                check_path: app_login
             http_basic: ~
             # configure the form authentication as the entry point for unauthenticated users
             entry_point: http_basic
