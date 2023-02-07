@@ -1,4 +1,4 @@
-# forum
+# Forum
 
-A forum project to play with Symfony and gain time with Boostrap. 
-My project study was a forum too, so this is the opportunity to push it forward. 
+Création d'un forum avec Symfony :speech_balloon:
+Utilisation de Boostrap pour se concentrer sur le Back :see_no_evil:
