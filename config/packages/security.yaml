@@ -15,16 +15,17 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        main:          
             # allow authentication using a form or HTTP basic
             form_login: 
                 login_path: app_login
                 check_path: app_login
+                enable_csrf: true
             http_basic: ~
             # configure the form authentication as the entry point for unauthenticated users
-            entry_point: http_basic
-            # lazy: true
-            provider: app_user_provider
+            entry_point: http_basic    
+            lazy: true
+            provider: app_user_provider        
             custom_authenticator: App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
@@ -42,6 +43,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        
 
 when@test:
     security:

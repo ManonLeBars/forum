@@ -33,13 +33,14 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
-
+        
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
+            
         );
     }
 
@@ -50,7 +51,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         
-        return new RedirectResponse($this->urlGenerator->generate('post_browse'));
+        return new RedirectResponse($this->urlGenerator->generate('main_browse'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
