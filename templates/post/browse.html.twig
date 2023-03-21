@@ -4,27 +4,9 @@
 
 {% block body %}
     <h1 class="p-5 text-center">Forum</h1>
-<<<<<<< HEAD
-    <a href="{{ path('post_add') }}" class="btn btn-primary">Poster</a>
-    <div> <p>Trier par:</p> <button type="button" class="btn btn-secondary">tris</button></div>
 
-    {% for post in posts %}
-          <div class="card"> 
-            <div class="card-header">
-                {{post.title}}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Posté par: {{post.user.username}} </h5>
-                <p>le {{ post.createdAt|date("d/m/Y") }} </p>
-                <p class="card-text">{{post.body}}</p>
-                <a href="{{ path('post_read', {id:post.id}) }}" class="btn btn-primary">Consulter</a>
-            </div>
-        </div>
-    {% endfor %}
-=======
-
-    <div class="mb-3 text-center">
-        <button type="button" class="btn btn-primary">Poster</button>
+    <div class="mb-3">
+        <a href="{{ path('post_add') }}" class="btn btn-primary">Poster</a>
     </div>
     
     <div class="mb-3 "> 
@@ -32,29 +14,18 @@
         <button type="button" class="btn btn-secondary">tris</button>
     </div>
 
-    <div class="card mb-3"> {# Faire un boucle sur cette div pour afficher tout les posts #}
-        <div class="card-header">
-            <h2>Titre du post</h2>            
+    {% for post in posts %}
+        <div class="card mb-3"> 
+            <div class="card-header">
+                <h2>{{post.title}}</h2>            
+            </div>
+            <div class="card-body">
+                <p class="card-title">Par: {{post.user.username}}</p>
+                <p>le {{ post.createdAt|date("d/m/Y") }}</p>
+                <p class="card-text">{{post.body}}</p>
+                <a href="{{ path('post_read', {id:post.id}) }}" class="btn btn-primary">Consulter</a>
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-title">Posté par:</p>
-            <p>le {{ "now"|date("d/m/Y") }}</p>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Consulter</a>
-        </div>
-    </div>
-
-    <div class="card mb-3"> {# Supprimer une fois la boucle en place #}
-        <div class="card-header">
-            <h2>Titre du post</h2>            
-        </div>
-        <div class="card-body">
-            <p class="card-title">Posté par:</p>
-            <p>le {{ "now"|date("d/m/Y") }}</p>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Consulter</a>
-        </div>
-    </div>
->>>>>>> integration
+    {% endfor %}
 
 {% endblock %}
