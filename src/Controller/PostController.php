@@ -52,6 +52,11 @@ class PostController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Commentaire ajouté'
+            );            
+
             return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
         }
 
@@ -81,6 +86,11 @@ class PostController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Nouveau post créé'
+            );
 
             return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
 
