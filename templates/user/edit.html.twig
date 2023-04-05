@@ -5,7 +5,18 @@
 {% block body %}
     <h1 class="p-5 text-center">Modifier mon profil</h1>
 
+    {{ form_start(form) }}
+    
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.password) }}            
 
+        <button type="submit" class="btn">Modifier</button>
+            
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
     
 
 {% endblock %}

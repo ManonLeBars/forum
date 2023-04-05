@@ -25,12 +25,46 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ 'post' in app.request.get('_route') ? ' active' }}" href="{{ path('post_add') }}" href="#">Ajouter</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ 'profil' in app.request.get('_route') ? ' active' }}" href="{{ path('user_read', {'id': app.user.id}) }}" href="#">Mon profil</a>
-                            </li>
+                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li class="nav-item">
+                                    <a class="nav-link {{ 'profil' in app.request.get('_route') ? ' active' }}" href="{{ path('user_read', {'id': app.user.id}) }}" href="#">Mon profil</a>
+                                </li>
+                            {% endif %}
+                            {% if is_granted('IS_ANONYMOUS') %}
+                                <li class="nav-item">                        
+                                    <a class="nav-link {{ 'login' in app.request.get('_route') ? ' active' }}" href="{{ path('app_login') }}">Connexion</a>                        
+                                </li>
+                            {% endif %}
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li class="nav-item">                         
+                                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>                        
+                                </li>
+                            {% endif %}
                         </div>
                     </div>
                 </nav>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="alert alert-dismissible alert-success " role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span class="mr-2">Bonjour <strong>
+                  {% if app.user.username == null %}
+                    {{app.user.firstname}}
+                    {% else %}
+                    {{app.user.username}}
+                  {% endif %}
+                </strong></span> 
+                </div>
+              {% endif %} <br>
+              {# read and display just one flash message type #}
+              {% for message in app.flashes('success') %}
+                <div class="alert alert-dismissible alert-success flash-notice" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  {{ message }}
+                </div>
+
+              {% endfor %}
+              
             </header>
 
             {% block body %}{% endblock %}
