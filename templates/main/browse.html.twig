@@ -4,7 +4,11 @@
 
 {% block body %}
     <h1 class="p-5 text-center">Accueil</h1>
-    <p class=" text-center">Bienvenus sur ce super forum!</p>
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="mb-3">
+            Bonjour {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
 
     <a href="{{ path('app_login') }}" class="btn btn-primary">Je me connecte</a>
 

@@ -25,6 +25,9 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ 'post' in app.request.get('_route') ? ' active' }}" href="{{ path('post_add') }}" href="#">Ajouter</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ 'profil' in app.request.get('_route') ? ' active' }}" href="{{ path('user_read', {'id': app.user.id}) }}" href="#">Mon profil</a>
+                            </li>
                         </div>
                     </div>
                 </nav>
