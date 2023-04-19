@@ -15,8 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 */
 class UserController extends AbstractController
 {
+
     /**
-     * @Route("/{id}", name="read",  requirements={"id"="\d+"})
+     * @Route("/other/{id}", name="browse",  requirements={"id"="\d+"})
+     */
+    public function browse(User $user): Response
+    {
+        return $this->render('user/browse.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/mine/{id}", name="read",  requirements={"id"="\d+"})
      */
     public function read(User $user): Response
     {

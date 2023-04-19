@@ -9,7 +9,7 @@
             <h1 class="text-center">{{post.title}}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Posté par: {{post.user}}</h5>
+            <h5 class="card-title">Posté par: <a href="{{ path('user_browse', {id:post.user.id}) }}" class="btn btn-primary">{{post.user.username}}</a></h5>
             <p>le {{ post.createdAt|date("d/m/Y") }}</p>
             <p class="card-text">{{post.body}}</p>
             <a href="#" class="btn btn-primary">Signaler</a>{# Faire un lien vers un formulaire de signalement#}
@@ -23,7 +23,7 @@
         <div class="card-body">
             {% for comment in post.comments %}
                 <div>{# Faire une boucle sur cette div pour contenir tout les commentaires relatifs #}
-                    <p class="card-title">Posté par: {{comment.user.username}}</p>
+                    <p class="card-title">Posté par: <a href="{{ path('user_browse', {id:comment.user.id}) }}" class="btn btn-primary">{{comment.user.username}}</a></p>
                     <p>le {{ comment.createdAt|date("d/m/Y") }}</p>
                     <p class="card-text">{{comment.body}}</p>
                 </div>
