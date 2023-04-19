@@ -13,6 +13,15 @@
             <p>le {{ post.createdAt|date("d/m/Y") }}</p>
             <p class="card-text">{{post.body}}</p>
             <a href="#" class="btn btn-primary">Signaler</a>{# Faire un lien vers un formulaire de signalement#}
+           
+            {% if post.user == app.user %}
+            <form action="{{ path('post_delete', {id: post.id}) }}" method="post" class="d-inline me-auto">
+                       
+            <button class="btn">Supprimer le post</button>
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="_token" value="{{ csrf_token('deletePost') }}">
+            </form>
+            {% endif %}            
         </div>
     </div>
 

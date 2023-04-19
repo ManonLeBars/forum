@@ -99,4 +99,32 @@ class PostController extends AbstractController
         'form' => $form->createView(),
         ]);
     }
+
+        /**
+     * @Route("/post/supprimer/{id}", name="delete", requirements={"id"="\d+"})
+     */
+    public function delete(Post $post, Request $request): Response
+    {
+
+        if ($post->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        //Check if the token is available
+        $token = $request->request->get('_token');
+        if ($this->isCsrfTokenValid('deletePost', $token)) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($post);
+            $em->flush();
+            //Display success message
+            $this->addFlash(
+                'success',
+                'Le post a été supprimé'
+            );
+
+            return $this->redirectToRoute('post_browse');
+        }
+        // If the token is not available, browse error message
+        throw $this->createAccessDeniedException('Veuillez essayer de nouveau');
+    }
 }
